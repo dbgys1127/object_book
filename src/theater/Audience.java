@@ -9,7 +9,20 @@ public class Audience {
         this.bag = bag;
     }
 
-    public Bag getBag() {
-        return bag;
+    //외부에서 가방에 접근하지 못하게 한다.
+//    public Bag getBag() {
+//        return bag;
+//    }
+
+    // 돈을 지불하고 티켓을 챙기는 것은 청중 스스로 한다.
+    public Long buy(Ticket ticket) {
+        if (bag.hasInvitation()) {
+            bag.setTicket(ticket);
+            return 0L;
+        } else {
+            bag.minusAmount(ticket.getFee());
+            bag.setTicket(ticket);
+            return ticket.getFee();
+        }
     }
 }
