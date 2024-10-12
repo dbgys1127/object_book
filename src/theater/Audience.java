@@ -16,13 +16,6 @@ public class Audience {
 
     // 돈을 지불하고 티켓을 챙기는 것은 청중 스스로 한다.
     public Long buy(Ticket ticket) {
-        if (bag.hasInvitation()) {
-            bag.setTicket(ticket);
-            return 0L;
-        } else {
-            bag.minusAmount(ticket.getFee());
-            bag.setTicket(ticket);
-            return ticket.getFee();
-        }
+        return bag.hold(ticket);
     }
 }

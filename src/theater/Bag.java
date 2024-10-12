@@ -18,27 +18,40 @@ public class Bag {
         this(null, amount);
     }
 
+
+    // 가방의 속성을 가방만 접근하게 할 수 있는 메서드
+    public Long hold(Ticket ticket) {
+        if (hasInvitation()) {
+            setTicket(ticket);
+            return 0L;
+        } else {
+            setTicket(ticket);
+            minusAmount(ticket.getFee());
+            return ticket.getFee();
+        }
+    }
+
     //초대장소지여부
-    public boolean hasInvitation() {
+    private boolean hasInvitation() {
         return invitation != null;
     }
 
     //티켓소비여부
-    public boolean hasTicket() {
+    private boolean hasTicket() {
         return ticket != null;
     }
 
-    public void setTicket(Ticket ticket) {
+    private void setTicket(Ticket ticket) {
         this.ticket = ticket;
     }
 
     //현금증가
-    public void plusAmount(Long amount) {
+    private void plusAmount(Long amount) {
         this.amount += amount;
     }
 
     //현금감소
-    public void minusAmount(Long amount) {
+    private void minusAmount(Long amount) {
         this.amount -= amount;
     }
 }
